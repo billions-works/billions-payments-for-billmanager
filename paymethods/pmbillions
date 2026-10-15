@@ -1,0 +1,13 @@
+#!/usr/bin/php
+<?php
+
+declare(strict_types=1);
+
+if (($argv[1] ?? '') !== '--command' || ($argv[2] ?? '') !== 'config') {
+    fwrite(STDERR, "Unsupported command\n");
+    exit(1);
+}
+
+echo '<?xml version="1.0" encoding="UTF-8"?>', "\n";
+echo '<doc><feature><redirect>on</redirect><notneedprofile>on</notneedprofile></feature>';
+echo '<param><payment_script>/mancgi/billionspayment.php</payment_script></param></doc>', "\n";

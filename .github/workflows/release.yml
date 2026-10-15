@@ -1,0 +1,66 @@
+name: Release packages
+
+on:
+  push:
+    tags: ['v*']
+
+permissions:
+  contents: write
+
+jobs:
+  deb:
+    strategy:
+      matrix:
+        include:
+          - target: ubuntu20
+            image: ubuntu:20.04
+          - target: ubuntu24
+            image: ubuntu:24.04
+          - target: debian12
+            image: debian:12
+          - target: debian13
+            image: debian:13
+    runs-on: ubuntu-latest
+    container: ${{ matrix.image }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install build and test dependencies
+        run: |
+          apt-get update
+          DEBIAN_FRONTEND=noninteractive apt-get install -y php-cli php-xml php-mbstring dpkg-dev
+      - name: Check PHP and build package
+        run: |
+          for file in src/*.php cgi/*.php paymethods/pmbillions; do php -l "$file"; done
+          php tests/bridge.php
+          sh packaging/build.sh '${{ matrix.target }}' "${GITHUB_REF_NAME#v}"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: package-${{ matrix.target }}
+          path: dist/*.deb
+  rpm:
+    runs-on: ubuntu-latest
+    container: almalinux:9
+    steps:
+      - uses: actions/checkout@v4
+      - run: dnf install -y rpm-build php-cli php-xml php-mbstring
+      - name: Check PHP and build package
+        run: |
+          for file in src/*.php cgi/*.php paymethods/pmbillions; do php -l "$file"; done
+          php tests/bridge.php
+          sh packaging/build.sh el9 "${GITHUB_REF_NAME#v}"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: package-el9
+          path: dist/*.rpm
+  publish:
+    needs: [deb, rpm]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: package-*
+          merge-multiple: true
+          path: dist
+      - uses: softprops/action-gh-release@v2
+        with:
+          files: dist/*

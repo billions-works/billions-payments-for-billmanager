@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mgrdata>
+  <plugin name="pmbillions">
+    <group>payment_method</group>
+    <author>Billions.works</author>
+  </plugin>
+  <metadata name="paymethod.edit.billions" type="form">
+    <form><page name="methodprops">
+      <field name="api_key"><input type="password" name="api_key" private="yes" required="yes"/></field>
+      <field name="instance_id"><input type="text" name="instance_id" required="yes"/></field>
+      <field name="callback_base_url"><input type="text" name="callback_base_url" required="yes"/></field>
+      <field name="api_url"><input type="text" name="api_url"/></field>
+    </page></form>
+  </metadata>
+  <lang name="en">
+    <messages name="plugin">
+      <msg name="desc_short_pmbillions">Billions</msg>
+      <msg name="desc_full_pmbillions">Official Billions.works payment integration</msg>
+      <msg name="price_pmbillions">Free</msg>
+    </messages>
+    <messages name="label_paymethod"><msg name="pmbillions">Billions</msg><msg name="module_pmbillions">Billions</msg></messages>
+    <messages name="paymethod.edit.billions">
+      <msg name="api_key">Public API key</msg>
+      <msg name="instance_id">Unique BILLmanager instance ID</msg>
+      <msg name="hint_instance_id">3–30 Latin letters, digits, underscores or hyphens; keep unchanged after first payment</msg>
+      <msg name="callback_base_url">Public HTTPS origin of BILLmanager</msg>
+      <msg name="hint_callback_base_url">For example https://billing.example.com (no path)</msg>
+      <msg name="api_url">Billions API origin (optional)</msg>
+      <msg name="hint_api_url">Default: https://api.billions.works</msg>
+    </messages>
+  </lang>
+  <lang name="ru">
+    <messages name="plugin">
+      <msg name="desc_short_pmbillions">Billions</msg>
+      <msg name="desc_full_pmbillions">Официальная интеграция оплаты Billions.works</msg>
+      <msg name="price_pmbillions">Бесплатно</msg>
+    </messages>
+    <messages name="label_paymethod"><msg name="pmbillions">Billions</msg><msg name="module_pmbillions">Billions</msg></messages>
+    <messages name="paymethod.edit.billions">
+      <msg name="api_key">Ключ Public API</msg>
+      <msg name="instance_id">Уникальный ID экземпляра BILLmanager</msg>
+      <msg name="hint_instance_id">3–30 латинских букв, цифр, подчёркиваний или дефисов; после первого платежа не менять</msg>
+      <msg name="callback_base_url">Публичный HTTPS-адрес BILLmanager</msg>
+      <msg name="hint_callback_base_url">Например https://billing.example.com (без пути)</msg>
+      <msg name="api_url">Адрес Billions API (необязательно)</msg>
+      <msg name="hint_api_url">По умолчанию: https://api.billions.works</msg>
+    </messages>
+  </lang>
+</mgrdata>
