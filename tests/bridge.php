@@ -21,4 +21,21 @@ try {
     throw new RuntimeException('Amount mismatch was accepted');
 } catch (BillionsError $expected) {
 }
+$invoice['amount'] = '10.00';
+$invoice['order_no'] = 'bm-other-7-42';
+try {
+    BillionsBridge::assertInvoiceMatches($invoice, $payment);
+    throw new RuntimeException('Order mismatch was accepted');
+} catch (BillionsError $expected) {
+}
+$invoice['order_no'] = $payload['order_no'];
+$payment['externalid'] = '22222222-2222-4222-8222-222222222222';
+try {
+    BillionsBridge::assertInvoiceMatches($invoice, $payment);
+    throw new RuntimeException('External invoice mismatch was accepted');
+} catch (BillionsError $expected) {
+}
+if (BillionsBridge::webhookInvoiceId(['data' => ['invoice_id' => $invoice['id']]]) !== $invoice['id']) {
+    throw new RuntimeException('Webhook invoice ID was not found');
+}
 echo "Bridge tests passed\n";

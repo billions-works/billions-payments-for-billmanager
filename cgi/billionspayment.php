@@ -40,7 +40,14 @@ try {
         || isset($parts['user']) || isset($parts['pass']) || preg_match('/[\r\n]/', $url)) {
         throw new BillionsError('Invalid invoice response');
     }
-    BillionsManager::mark('payment.setinpay', $id, $invoiceId);
+    $status = (string) ($invoice['status'] ?? '');
+    if ($status === 'completed') {
+        BillionsManager::mark('payment.setpaid', $id, $invoiceId);
+    } elseif ($status === 'pending' || $status === 'processing') {
+        BillionsManager::mark('payment.setinpay', $id, $invoiceId);
+    } else {
+        throw new BillionsError('Invoice is no longer payable');
+    }
     respond(302, 'Redirecting to Billions checkout', $url);
 } catch (Throwable $error) {
     error_log('Billions BILLmanager payment: ' . $error->getMessage());
