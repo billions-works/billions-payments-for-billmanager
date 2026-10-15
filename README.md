@@ -4,17 +4,39 @@ Official [Billions.works](https://billions.works/) payment module for BILLmanage
 
 ## Install the latest release
 
-The packages are architecture-independent (PHP). Pick the package matching the host OS. All files are also available on the [latest release page](https://github.com/billions-works/billions-payments-for-billmanager/releases/latest).
+The packages are architecture-independent (PHP). Run the command for your host OS as root. You can also [browse all release files](https://github.com/billions-works/billions-payments-for-billmanager/releases/latest).
 
-| System | Package | Install |
-| --- | --- | --- |
-| Ubuntu 20.04 | [billions-billmanager-ubuntu20.deb](https://github.com/billions-works/billions-payments-for-billmanager/releases/latest/download/billions-billmanager-ubuntu20.deb) | Download, then `apt install ./billions-billmanager-ubuntu20.deb` |
-| Ubuntu 24.04 | [billions-billmanager-ubuntu24.deb](https://github.com/billions-works/billions-payments-for-billmanager/releases/latest/download/billions-billmanager-ubuntu24.deb) | Download, then `apt install ./billions-billmanager-ubuntu24.deb` |
-| Debian 12 | [billions-billmanager-debian12.deb](https://github.com/billions-works/billions-payments-for-billmanager/releases/latest/download/billions-billmanager-debian12.deb) | Download, then `apt install ./billions-billmanager-debian12.deb` |
-| Debian 13 | [billions-billmanager-debian13.deb](https://github.com/billions-works/billions-payments-for-billmanager/releases/latest/download/billions-billmanager-debian13.deb) | Download, then `apt install ./billions-billmanager-debian13.deb` |
-| AlmaLinux / Rocky Linux 9 and compatible RPM-based systems | [billions-billmanager-el9.noarch.rpm](https://github.com/billions-works/billions-payments-for-billmanager/releases/latest/download/billions-billmanager-el9.noarch.rpm) | `dnf install https://github.com/billions-works/billions-payments-for-billmanager/releases/latest/download/billions-billmanager-el9.noarch.rpm` |
+Ubuntu 20.04 — [package](https://github.com/billions-works/billions-payments-for-billmanager/releases/latest/download/billions-billmanager-ubuntu20.deb):
 
-Run the installation command as root. The host needs BILLmanager 6, PHP CLI 7.4 or newer with XML/SimpleXML and mbstring, a valid CA trust store, and outbound HTTPS access to `api.billions.works`. The incoming HTTPS callback path `/mancgi/billionsresult.php` must be publicly reachable. Restart BILLmanager after installing if the new payment method does not appear immediately.
+```sh
+curl -fL https://github.com/billions-works/billions-payments-for-billmanager/releases/latest/download/billions-billmanager-ubuntu20.deb -o /tmp/billions-billmanager-ubuntu20.deb && apt install -y /tmp/billions-billmanager-ubuntu20.deb
+```
+
+Ubuntu 24.04 — [package](https://github.com/billions-works/billions-payments-for-billmanager/releases/latest/download/billions-billmanager-ubuntu24.deb):
+
+```sh
+curl -fL https://github.com/billions-works/billions-payments-for-billmanager/releases/latest/download/billions-billmanager-ubuntu24.deb -o /tmp/billions-billmanager-ubuntu24.deb && apt install -y /tmp/billions-billmanager-ubuntu24.deb
+```
+
+Debian 12 — [package](https://github.com/billions-works/billions-payments-for-billmanager/releases/latest/download/billions-billmanager-debian12.deb):
+
+```sh
+curl -fL https://github.com/billions-works/billions-payments-for-billmanager/releases/latest/download/billions-billmanager-debian12.deb -o /tmp/billions-billmanager-debian12.deb && apt install -y /tmp/billions-billmanager-debian12.deb
+```
+
+Debian 13 — [package](https://github.com/billions-works/billions-payments-for-billmanager/releases/latest/download/billions-billmanager-debian13.deb):
+
+```sh
+curl -fL https://github.com/billions-works/billions-payments-for-billmanager/releases/latest/download/billions-billmanager-debian13.deb -o /tmp/billions-billmanager-debian13.deb && apt install -y /tmp/billions-billmanager-debian13.deb
+```
+
+AlmaLinux / Rocky Linux 9 and compatible RPM-based systems — [package](https://github.com/billions-works/billions-payments-for-billmanager/releases/latest/download/billions-billmanager-el9.noarch.rpm):
+
+```sh
+dnf install -y https://github.com/billions-works/billions-payments-for-billmanager/releases/latest/download/billions-billmanager-el9.noarch.rpm
+```
+
+The Debian-family commands require `curl`. The host needs BILLmanager 6, PHP CLI 7.4 or newer with XML/SimpleXML and mbstring, a valid CA trust store, and outbound HTTPS access to `api.billions.works`. The incoming HTTPS callback path `/mancgi/billionsresult.php` must be publicly reachable. Restart BILLmanager after installing if the new payment method does not appear immediately.
 
 ## Configure
 
