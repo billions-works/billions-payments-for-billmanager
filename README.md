@@ -1,6 +1,6 @@
 # Billions Payments for BILLmanager
 
-Official [Billions.works](https://billions.works/) payment module for BILLmanager 6. It uses the Billions Public API directly (no SDK or Cryptomus dependency). This integration was developed with LLM assistance and is maintained in this repository. License: [MIT](LICENSE).
+Official [Billions.works](https://billions.works/) payment module for BILLmanager 6. It uses the Billions Public API directly. This integration was developed with LLM assistance and is maintained in this repository. License: [MIT](LICENSE).
 
 ## Install the latest release
 
